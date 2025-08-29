@@ -1,0 +1,11 @@
+workflows:
+  build-web:
+    name: Build Next.js Web
+    environment:
+      node: 20
+    scripts:
+      - npm install
+      - npm run build
+    artifacts:
+      - .next/**/*
+      - public/**/*
