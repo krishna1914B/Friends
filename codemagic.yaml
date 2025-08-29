@@ -1,11 +1,14 @@
 workflows:
-  build-web:
-    name: Build Next.js Web
+  build-android:
+    name: Build Expo Android APK
     environment:
       node: 20
+      android: true
+      vars:
+        EXPO_CLI_VERSION: 6.7.8
     scripts:
       - npm install
-      - npm run build
+      - npx expo prebuild --platform android
+      - npx expo run:android --no-install
     artifacts:
-      - .next/**/*
-      - public/**/*
+      - android/app/build/outputs/**/*.apk
