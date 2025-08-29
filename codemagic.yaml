@@ -1,14 +1,16 @@
 workflows:
-  build-android:
-    name: Build Expo Android APK
+  build-expo:
+    name: Build Expo App
     environment:
       node: 20
-      android: true
+      # Optional: specify Expo CLI version
       vars:
         EXPO_CLI_VERSION: 6.7.8
     scripts:
       - npm install
-      - npx expo prebuild --platform android
-      - npx expo run:android --no-install
+      - npx expo prebuild
+      - npm run build
     artifacts:
+      - web-build/**/*
       - android/app/build/outputs/**/*.apk
+      - ios/build/**/*.ipa
